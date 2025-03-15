@@ -1,1 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Jesse - Sand Cassall</title>
+    <link rel="shortcut icon" type="image/png" href="images/logo.png">
+    <style>
+        
+.navbar {
+  background-color: rgba(8, 16, 32, 0);
+  color: white;
+  position: static;
+  width: 100%;
+  z-index: 999;
+  height: 40px; /* Adjust the height as needed */
+  transition: height 0.3s, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Added to center the menu options horizontally */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0);
+  margin-bottom: 40px;
+}
 
+.navbar a {
+  display: block;
+  font-size: 1.25vw; /* Set the font size as a percentage of the viewport width */
+  font-family: monospace;
+  color: pink;
+  text-align: center;
+  padding: .9vw 4vw;
+  text-decoration: none;
+  transition: font-size 0.4s, background-color 0.3s, color 0.3s;
+}
+
+.navbar a:hover {
+  background-color: rgba(8, 16, 32, .65);
+  color: #fff;
+}
+
+.navbar:hover {
+  background-color: rgba(8, 16, 32, 0);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0);
+}
+
+.navbar:hover a {
+  font-size: 1.75vw; /* Set the increased font size for hover state */
+}
+
+body {
+  background: linear-gradient(220deg, rgba(36, 22, 69), rgba(14, 26, 48));
+  overflow-x: hidden;
+  color: #fff;
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+}
+        
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    animation-name: moveStar;
+    animation-duration: var(--duration);
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes moveStar {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0.8
+    }
+    100% {
+        transform: translate(750px, 600px);
+        opacity: 0
+    }
+}
+
+#logo-small {
+  display: block;
+  width: 60px;
+  height: auto;
+  margin: 20px auto;
+}
+
+.page-header {
+  padding-top: 20px;
+  text-align: center;
+}
+
+@media only screen and (orientation: portrait) {
+  .navbar a {
+  display: block;
+  font-size: 1.8vh; /* Set the font size as a percentage of the viewport width */
+  font-family: monospace;
+  color: pink;
+  text-align: center;
+  padding: .9vw 4vw;
+  text-decoration: none;
+  transition: font-size 0.4s, background-color 0.3s, color 0.3s;
+  }
+
+.navbar:hover a {
+  font-size: 2.1vh; /* Set the increased font size for hover state */
+  }
+}
+
+.about-container {
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto 50px;
+  padding: 20px;
+  background: rgba(8, 16, 32, 0.7);
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.profile-pic {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 192, 203, 0.6);
+  margin-right: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.profile-info h1 {
+  color: pink;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.about-section {
+  margin-bottom: 30px;
+}
+
+.about-section h2 {
+  color: pink;
+  border-bottom: 2px solid rgba(255, 192, 203, 0.4);
+  padding-bottom: 8px;
+  margin-top: 25px;
+}
+
+.about-section p {
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.interest-icons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 20px;
+  justify-content: center;
+}
+
+.interest-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  width: 120px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.interest-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 192, 203, 0.2);
+}
+
+.interest-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+/* Fun animation for headings */
+h2 {
+  position: relative;
+  overflow: hidden;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: pink;
+  transition: width 0.5s ease;
+}
+
+h2:hover::after {
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-pic {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  
+  .interest-icons {
+    justify-content: center;
+  }
+}
+    </style>
+</head>
+<body>
+    <script>
+        function getRandomDuration() {
+            return Math.random() * 7000 + 2000; // Random duration between 2000ms and 9000ms
+        }
+
+        function getRandomPosition() {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            const xPos = Math.floor(Math.random() * (screenWidth - 2)) + 1 -400; // Random X position
+            const yPos = Math.floor(Math.random() * (screenHeight - 2)) + 1 -300; // Random Y position
+            return { x: xPos, y: yPos };
+        }
+
+        function createStar() {
+            const star = document.createElement("div");
+            star.className = "star";
+            star.style.setProperty("--duration", `${getRandomDuration()}ms`);
+
+            const position = getRandomPosition();
+            star.style.left = position.x + "px";
+            star.style.top = position.y + "px";
+
+            document.body.appendChild(star);
+        }
+
+        for (let i = 0; i < 200; i++) {
+            createStar();
+        }
+    </script>
+    
+    <div class="page-header">
+        <img id="logo-small" src="images/logo.png" alt="Logo">
+        
+        <div class="navbar">
+          <a href="index.html">Home</a>
+          <a href="about.html" class="active">About</a>
+          <a href="portfolio.html">Portfolio</a>
+        </div>
+    </div>
+
+    <div class="about-container">
+        <div class="profile-section">
+            <img src="images/DSCN0063.jpeg" alt="Jesse playing pinball" class="profile-pic">
+            <div class="profile-info">
+                <h1>Jesse Sall</h1>
+                <p>Hello there! I'm a data enthusiast with a fondness for patterns, whether in spreadsheets or on pinball playfields.</p>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>Interests & Hobbies</h2>
+            <p>When not working on projects, you might find me playing Minesweeper, enjoying pinball at local arcades, or participating in trivia nights. I'm also that person who gets oddly excited about elegant data solutions and well-organized spreadsheets.</p>
+            
+            <div class="interest-icons">
+                <div class="interest-item">
+                    <div class="interest-icon">💣</div>
+                    <span>Minesweeper</span>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">🎮</div>
+                    <span>Pinball</span>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">🤔</div>
+                    <span>Trivia</span>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">📊</div>
+                    <span>Data Science</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>Education & Background</h2>
+            <p>I hold a Bachelor's degree in Accounting and Information Systems, though I've gravitated toward the latter where I spend most of my time as a solo developer. My work in Business Intelligence has taught me to appreciate the stories that can emerge from seemingly ordinary data.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Goals & Philosophy</h2>
+            <p>I believe in continuous learning and always have at least three projects in various states of "almost finished" at any given time. My goals are simple: create things I enjoy, learn new tools and skills, and grow by occasionally venturing beyond my comfort zone into new challenges.​​​​​​​​​​​​​​​​</p>
+        </div>
+    </div>
+
+</body>
+</html>
