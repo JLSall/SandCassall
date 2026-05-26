@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Speff Cup</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Unbounded:wght@700;800;900&family=Rajdhani:wght@500;600;700&display=fallback&preload" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/unbounded/v7/pe0qMImSLYBIv1o4X1M8cc-LzEt-qbEbW78jGn1HbBXCMlpBTALqb8.0.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/unbounded/v7/pe0qMImSLYBIv1o4X1M8cc-LzEt-qbEbW78jGn1HbBXCMlpBTALqb8.0.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/unbounded/v7/pe0qMImSLYBIv1o4X1M8cc-LzEt-qbEbW78jGn1HbBXCMlpBTALqb8.0.woff2') format('woff2');
+  }
+</style>
+<style>
+  @font-face {
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/unbounded/v7/pe0qMImSLYBIv1o4X1M8cc-LzEt-qbEbW78jGn1HbBXCMlpBTALqb8.0.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/unbounded/v7/pe0qMImSLYBIv1o4X1M8cc-LzEt-qbEbW78jGn1HbBXCMlpBTALqb8.0.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/unbounded/v7/pe0qMImSLYBIv1o4X1M8cc-LzEt-qbEbW78jGn1HbBXCMlpBTALqb8.0.woff2') format('woff2');
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --win-bg:       #008080;
+    --win-face:     #c0c0c0;
+    --win-dark:     #808080;
+    --win-darker:   #000000;
+    --win-white:    #ffffff;
+    --win-titlebar: #000080;
+    --win-inset:    #ffffff;
+    --font-ui:      'MS Sans Serif', 'Microsoft Sans Serif', Arial, sans-serif;
+    --font-display: 'Unbounded', sans-serif;
+    --font-heading: 'Rajdhani', 'Arial Narrow', Arial, sans-serif;
+    --font-mono:    'VT323', monospace;
+  }
+
+  html {
+    background: var(--win-bg);
+  }
+  body {
+    font-family: var(--font-ui);
+    background: var(--win-bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px 8px 16px;
+  }
+
+  .window {
+    width: 100%;
+    max-width: 420px;
+    background: var(--win-face);
+    border-top:    2px solid var(--win-white);
+    border-left:   2px solid var(--win-white);
+    border-right:  2px solid var(--win-dark);
+    border-bottom: 2px solid var(--win-dark);
+  }
+
+  /* TITLE BAR */
+  .titlebar {
+    background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 5px 3px 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    font-family: var(--font-ui);
+  }
+  .titlebar-left { display: flex; align-items: center; gap: 5px; }
+  .titlebar-btns { display: flex; gap: 2px; }
+  .win-btn {
+    width: 17px; height: 15px;
+    background: var(--win-face);
+    border-top: 1px solid var(--win-white); border-left: 1px solid var(--win-white);
+    border-right: 1px solid var(--win-dark); border-bottom: 1px solid var(--win-dark);
+    font-size: 9px; font-weight: bold; color: #000;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .body { padding: 7px; display: flex; flex-direction: column; gap: 6px; }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 10px 8px 6px;
+    border-bottom: 1px solid #aaa;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 54px;
+    font-weight: 900;
+    color: var(--win-darker);
+    letter-spacing: 2px;
+    line-height: 1;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+  .hero-title span { color: var(--win-titlebar); }
+  .hero-sub {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    color: #444;
+    margin-top: 2px;
+    letter-spacing: 1px;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    background: var(--win-titlebar);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 7px;
+    font-family: var(--font-heading);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* INSET PANEL */
+  .panel {
+    background: var(--win-inset);
+    border-top: 2px solid var(--win-dark); border-left: 2px solid var(--win-dark);
+    border-right: 2px solid var(--win-white); border-bottom: 2px solid var(--win-white);
+    padding: 6px 10px;
+  }
+
+  /* RAISED BOX */
+  .raised {
+    border-top: 2px solid var(--win-white); border-left: 2px solid var(--win-white);
+    border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
+    background: var(--win-face);
+    padding: 6px 8px;
+  }
+
+  /* DATE ROW — inline single line */
+  .date-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px 8px;
+  }
+  .date-item { text-align: center; }
+  .date-label { font-size: 9px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+  .date-main {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--win-darker);
+    line-height: 1.1;
+    letter-spacing: 1px;
+  }
+  .date-utc {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: #000080;
+  }
+  .date-arrow { font-size: 16px; color: #888; }
+  .date-note {
+    text-align: center;
+    font-size: 10px;
+    color: #555;
+    padding: 2px 0 4px;
+    border-top: 1px solid #ddd;
+  }
+
+  /* TWO-COL LAYOUT for formats + diff/prize */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; align-items: stretch; }
+  .two-col > div { display: flex; flex-direction: column; }
+  .two-col > div .raised,
+  .two-col > div .panel { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+  /* FORMATS */
+  .format-row {
+    padding: 4px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  .format-row:last-child { border-bottom: none; }
+  .format-name {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--win-darker);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    letter-spacing: 0.5px;
+  }
+  .format-formula {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--win-face);
+    border-top: 1px solid var(--win-dark); border-left: 1px solid var(--win-dark);
+    border-right: 1px solid var(--win-white); border-bottom: 1px solid var(--win-white);
+    padding: 0 5px;
+    color: var(--win-titlebar);
+  }
+  .format-dir {
+    font-size: 9px;
+    background: #e0e0e0;
+    border: 1px solid #aaa;
+    padding: 1px 4px;
+    color: #333;
+    font-family: var(--font-ui);
+  }
+  .format-desc { font-size: 10px; color: #444; line-height: 1.4; margin-top: 2px; }
+
+  /* DIFF */
+  .diff-pills { display: flex; gap: 6px; margin-bottom: 5px; }
+  .diff-pill {
+    flex: 1;
+    text-align: center;
+    padding: 4px 2px;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    border-top: 2px solid var(--win-white); border-left: 2px solid var(--win-white);
+    border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
+    background: var(--win-face);
+    color: var(--win-darker);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .diff-note { font-size: 10px; color: #333; line-height: 1.4; }
+
+  /* PRIZE */
+  .prize-total {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--win-titlebar);
+    text-align: center;
+    line-height: 1;
+    padding: 4px 0 1px;
+    letter-spacing: 1px;
+  }
+  .prize-unit {
+    text-align: center;
+    font-size: 9px;
+    color: #555;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .prize-rows { display: flex; flex-direction: column; gap: 2px; }
+  .prize-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 10px; color: #222;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 2px 0;
+  }
+  .prize-item:last-child { border-bottom: none; }
+  .prize-note {
+    font-size: 9px; color: #555;
+    text-align: center;
+    margin-top: 5px;
+    padding-top: 4px;
+    border-top: 1px solid #ddd;
+  }
+
+  /* SUBMISSION */
+  .submit-text { font-size: 10px; color: #333; line-height: 1.5; }
+
+  /* STATUS BAR */
+  .statusbar {
+    border-top: 1px solid var(--win-dark);
+    background: var(--win-face);
+    padding: 2px 7px;
+    font-size: 10px;
+    color: #444;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-ui);
+  }
+</style>
+</head>
+<body>
+
+<div class="window">
+
+  <div class="titlebar">
+    <div class="titlebar-left">
+      <span>💣</span>
+      <span>Speff Cup — Event Announcement</span>
+    </div>
+    <div class="titlebar-btns">
+      <div class="win-btn">_</div>
+      <div class="win-btn">□</div>
+      <div class="win-btn">✕</div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-title">SPEFF <span>CUP</span></div>
+      <div class="hero-sub">minesweeper.online · Community Event</div>
+    </div>
+
+    <!-- DATES -->
+    <div>
+      <div class="section-header">📅 Event Dates</div>
+      <div class="raised" style="padding:0 0 0 0;">
+        <div class="date-row">
+          <div class="date-item">
+            <div class="date-label">Start</div>
+            <div class="date-main">June 14</div>
+            <div class="date-utc">18:00 UTC</div>
+          </div>
+          <div class="date-arrow">→</div>
+          <div class="date-item">
+            <div class="date-label">End</div>
+            <div class="date-main">June 21</div>
+            <div class="date-utc">18:00 UTC</div>
+          </div>
+        </div>
+        <div class="date-note">7 days · 168 hours</div>
+      </div>
+    </div>
+
+    <!-- FORMATS -->
+    <div>
+      <div class="section-header">🏁 Formats</div>
+      <div class="panel">
+        <div class="format-row">
+          <div class="format-name">Fastest Time <span class="format-formula">TIME</span><span class="format-dir">▼ lower</span></div>
+          <div class="format-desc">Lowest completion time. IOE ≥ 1 required.</div>
+        </div>
+        <div class="format-row">
+          <div class="format-name">Speff Score <span class="format-formula">TIME÷IOE</span><span class="format-dir">▼ lower</span></div>
+          <div class="format-desc">Time divided by IOE. Rewards speed and click efficiency together.</div>
+        </div>
+        <div class="format-row">
+          <div class="format-name">3BVSpeff <span class="format-formula">3BV/s x IOE</span><span class="format-dir">▲ higher</span></div>
+          <div class="format-desc">3BV per second multiplied by IOE. Speed output per click.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIFF + PRIZE side by side -->
+    <div class="two-col">
+
+      <div>
+        <div class="section-header">⚙ Difficulties</div>
+        <div class="raised">
+          <div class="diff-pills">
+            <div class="diff-pill">Int</div>
+            <div class="diff-pill">Expert</div>
+          </div>
+          <div class="diff-note">Each format runs separately for both difficulties, giving <strong>6 leaderboards</strong> in total. Compete in all of them.</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-header">🏆 Prize Pool</div>
+        <div class="panel">
+          <div class="prize-total">600,000</div>
+          <div class="prize-unit">Minecoins · Starting Pool</div>
+          <div class="prize-rows">
+            <div class="prize-item">🥇 <span>1st — 65% per event</span></div>
+            <div class="prize-item">🥈 <span>2nd — 25% per event</span></div>
+            <div class="prize-item">🥉 <span>3rd — 10% per event</span></div>
+          </div>
+          <div class="prize-note">6 events · 18 prize spots · donations welcome!</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SUBMISSION -->
+    <div>
+      <div class="section-header">📬 Submissions</div>
+      <div class="raised">
+        <div class="submit-text">Submissions are handled entirely on <strong>minesweeper.online</strong>. Full submission rules will be announced before the event starts.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="statusbar">
+    <span>minemasters.pro/speff-cup</span>
+    <span>Good luck! 💣</span>
+  </div>
+
+</div>
+
+</body>
+</html>
