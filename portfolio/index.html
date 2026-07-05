@@ -1,438 +1,560 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Portfolio - Sand Cassall</title>
-    <link rel="shortcut icon" type="/image/png" href="https://sandcassall.com/images/logo.png">
-    <style>
-        
-.navbar {
-  background-color: rgba(8, 16, 32, 0);
-  color: white;
-  position: static;
-  width: 100%;
-  z-index: 999;
-  height: 40px; /* Adjust the height as needed */
-  transition: height 0.3s, box-shadow 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Added to center the menu options horizontally */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0);
-  margin-bottom: 40px;
-}
-
-.navbar a {
-  display: block;
-  font-size: 1.25vw; /* Set the font size as a percentage of the viewport width */
-  font-family: monospace;
-  color: pink;
-  text-align: center;
-  padding: .9vw 4vw;
-  text-decoration: none;
-  transition: font-size 0.4s, background-color 0.3s, color 0.3s;
-}
-
-.navbar a:hover {
-  background-color: rgba(8, 16, 32, .65);
-  color: #fff;
-}
-
-.navbar:hover {
-  background-color: rgba(8, 16, 32, 0);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0);
-}
-
-.navbar:hover a {
-  font-size: 1.75vw; /* Set the increased font size for hover state */
-}
-
-body {
-  background: linear-gradient(220deg, rgba(36, 22, 69), rgba(14, 26, 48));
-  overflow-x: hidden;
-  color: #fff;
-  font-family: monospace;
-  margin: 0;
-  padding: 0;
-}
-        
-.star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background-color: white;
-    animation-name: moveStar;
-    animation-duration: var(--duration);
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-}
-
-@keyframes moveStar {
-    0% {
-        transform: translate(0, 0);
-        opacity: 0.8
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Portfolio — Sand Cassall</title>
+  <meta name="description" content="Case studies from Jesse Sall: MineMasters.pro, Extension Chord, and the full-stack systems behind them — APIs, payments, signed update pipelines, and more.">
+  <link rel="canonical" href="https://sandcassall.com/portfolio/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sandcassall.com/portfolio/">
+  <meta property="og:title" content="Portfolio — Sand Cassall">
+  <meta property="og:description" content="Full-stack case studies: game platforms, mod loaders, payment systems, and signed release pipelines.">
+  <meta property="og:image" content="https://sandcassall.com/images/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/assets/img/favicons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    .page-head {
+      padding: 8.5rem 0 1rem;
+      text-align: center;
     }
-    100% {
-        transform: translate(750px, 600px);
-        opacity: 0
+    .page-head h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
     }
-}
+    .page-head p {
+      color: var(--text-soft);
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 1.08rem;
+    }
 
-#logo-small {
-  display: block;
-  width: 60px;
-  height: auto;
-  margin: 20px auto;
-}
+    /* ---- Case study shell ---- */
+    .case {
+      padding: 2.4rem clamp(1.4rem, 4vw, 2.6rem);
+      margin-bottom: 2.5rem;
+      scroll-margin-top: 90px;
+    }
+    .case:hover { transform: none; }
+    .case-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      margin-bottom: 0.6rem;
+    }
+    .case h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .case-role {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      margin-bottom: 1.4rem;
+    }
+    .case-cols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    .case-text { flex: 1 1 380px; min-width: 0; }
+    .case-text > p { color: var(--text-soft); margin-bottom: 1rem; font-size: 1rem; }
+    .case-text > p strong { color: var(--text); }
+    .case-media { flex: 1 1 340px; min-width: 0; }
+    .case-media img {
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 45px rgba(4, 6, 14, 0.5);
+    }
+    .case-media figcaption {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      margin-top: 0.6rem;
+      text-align: center;
+    }
+    .case-links { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.4rem; }
 
-.page-header {
-  padding-top: 20px;
-  text-align: center;
-}
+    /* ---- Highlight sub-grid ---- */
+    .sub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.8rem;
+    }
+    .sub-item {
+      background: rgba(236, 234, 244, 0.045);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+    }
+    .sub-item:hover { border-color: rgba(232, 179, 106, 0.4); background: rgba(232, 179, 106, 0.05); }
+    .sub-item h4 {
+      font-family: var(--font-display);
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--sand);
+    }
+    .sub-item p { font-size: 0.85rem; color: var(--text-soft); }
+    .sub-item a { color: inherit; text-decoration: none; }
 
-@media only screen and (orientation: portrait) {
-  .navbar a {
-  display: block;
-  font-size: 1.8vh; /* Set the font size as a percentage of the viewport width */
-  font-family: monospace;
-  color: pink;
-  text-align: center;
-  padding: .9vw 4vw;
-  text-decoration: none;
-  transition: font-size 0.4s, background-color 0.3s, color 0.3s;
-  }
+    /* ---- Deep-dive callout ---- */
+    .deep-dive {
+      margin-top: 1.9rem;
+      border-left: 3px solid var(--pink);
+      background: rgba(242, 160, 189, 0.05);
+      border-radius: 0 12px 12px 0;
+      padding: 1.3rem 1.5rem;
+    }
+    .deep-dive h3 {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 0.8rem;
+    }
+    .deep-dive ul { list-style: none; }
+    .deep-dive li {
+      position: relative;
+      padding-left: 1.4rem;
+      margin-bottom: 0.65rem;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+    .deep-dive li::before {
+      content: "\25B8";
+      position: absolute;
+      left: 0;
+      color: var(--sand);
+    }
+    .deep-dive li strong { color: var(--text); }
 
-.navbar:hover a {
-  font-size: 2.1vh; /* Set the increased font size for hover state */
-  }
-}
+    /* ---- Pipeline diagram ---- */
+    .pipeline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.8rem;
+      align-items: stretch;
+    }
+    .pipe-step {
+      flex: 1 1 150px;
+      background: rgba(236, 234, 244, 0.045);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.95rem 1rem;
+      position: relative;
+    }
+    .pipe-step .pipe-n {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--sand);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.35rem;
+    }
+    .pipe-step h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .pipe-step p { font-size: 0.78rem; color: var(--text-soft); line-height: 1.5; }
 
-.portfolio-container {
-  width: 80%;
-  max-width: 1200px;
-  margin: 0 auto 50px;
-  padding: 20px;
-}
+    /* ---- Two-way ship ---- */
+    .ship-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.8rem;
+    }
+    .ship-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.2rem 1.3rem;
+      background: rgba(236, 234, 244, 0.03);
+    }
+    .ship-card h4 {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.6rem;
+    }
+    .ship-card p { font-size: 0.9rem; color: var(--text-soft); }
 
-.portfolio-intro {
-  text-align: center;
-  margin-bottom: 50px;
-}
+    /* ---- Systems section ---- */
+    .sys-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.1rem;
+    }
+    .sys-card { padding: 1.5rem 1.4rem; scroll-margin-top: 90px; }
+    .sys-card .sys-icon { font-size: 1.5rem; margin-bottom: 0.7rem; }
+    .sys-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .sys-card p { font-size: 0.88rem; color: var(--text-soft); }
 
-.portfolio-intro h1 {
-  color: pink;
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-}
-
-.portfolio-intro p {
-  font-size: 1.1rem;
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-.project-section {
-  margin-bottom: 60px;
-  background: rgba(8, 16, 32, 0.7);
-  border-radius: 15px;
-  padding: 25px;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-}
-
-.project-section h2 {
-  color: pink;
-  border-bottom: 2px solid rgba(255, 192, 203, 0.4);
-  padding-bottom: 8px;
-  margin-top: 0;
-  margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.project-section h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: pink;
-  transition: width 0.5s ease;
-}
-
-.project-section h2:hover::after {
-  width: 100%;
-}
-
-.project-section p {
-  line-height: 1.6;
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-
-.project-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  align-items: flex-start;
-}
-
-.project-text {
-  flex: 1;
-  min-width: 300px;
-}
-
-.project-image {
-  flex: 1;
-  min-width: 300px;
-  max-width: 500px;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.project-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.project-image:hover img {
-  transform: scale(1.05);
-}
-
-.sub-projects {
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.sub-project {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 10px;
-  transition: transform 0.3s, background 0.3s;
-}
-
-.sub-project:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 192, 203, 0.2);
-}
-
-.sub-project h3 {
-  color: pink;
-  margin-top: 0;
-  margin-bottom: 15px;
-}
-
-.project-links {
-  margin-top: 15px;
-}
-
-.project-button {
-  display: inline-block;
-  background: rgba(255, 192, 203, 0.2);
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  margin-right: 10px;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.project-button:hover {
-  background: rgba(255, 192, 203, 0.4);
-  transform: translateY(-2px);
-}
-
-.technologies {
-  margin-top: 20px;
-}
-
-.tech-tag {
-  display: inline-block;
-  background: rgba(8, 16, 32, 0.5);
-  color: #ccc;
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-size: 0.9rem;
-  margin-right: 8px;
-  margin-bottom: 8px;
-}
-
-@media screen and (max-width: 768px) {
-  .project-content {
-    flex-direction: column;
-  }
-  
-  .project-image {
-    max-width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .sub-projects {
-    grid-template-columns: 1fr;
-  }
-}
-    </style>
+    /* ---- Earlier work ---- */
+    .early-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+    .early-card { padding: 1.7rem 1.6rem; }
+    .early-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+    .early-card p { font-size: 0.92rem; color: var(--text-soft); margin-bottom: 0.8rem; }
+    .early-card ul { list-style: none; margin-bottom: 0.8rem; }
+    .early-card li {
+      position: relative;
+      padding-left: 1.3rem;
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      margin-bottom: 0.4rem;
+    }
+    .early-card li::before { content: "\25B8"; position: absolute; left: 0; color: var(--sand); }
+  </style>
 </head>
 <body>
-    <script>
-        function getRandomDuration() {
-            return Math.random() * 7000 + 2000; // Random duration between 2000ms and 9000ms
-        }
+  <canvas id="sand-sky" aria-hidden="true"></canvas>
+  <div class="dunes" aria-hidden="true">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,96 C240,140 420,60 720,88 C1020,116 1200,70 1440,104 L1440,160 L0,160 Z" fill="#141033" opacity="0.9"/>
+      <path d="M0,124 C300,90 560,146 860,118 C1120,94 1300,138 1440,120 L1440,160 L0,160 Z" fill="#0b0d20"/>
+    </svg>
+  </div>
 
-        function getRandomPosition() {
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
-            const xPos = Math.floor(Math.random() * (screenWidth - 2)) + 1 -400; // Random X position
-            const yPos = Math.floor(Math.random() * (screenHeight - 2)) + 1 -300; // Random Y position
-            return { x: xPos, y: yPos };
-        }
-
-        function createStar() {
-            const star = document.createElement("div");
-            star.className = "star";
-            star.style.setProperty("--duration", `${getRandomDuration()}ms`);
-
-            const position = getRandomPosition();
-            star.style.left = position.x + "px";
-            star.style.top = position.y + "px";
-
-            document.body.appendChild(star);
-        }
-
-        for (let i = 0; i < 200; i++) {
-            createStar();
-        }
-    </script>
-    
-    <div class="page-header">
-        <img id="logo-small" src="https://sandcassall.com/images/logo.png" alt="Logo">
-        
-        <div class="navbar">
-          <a href="https://sandcassall.com/">Home</a>
-          <a href="https://sandcassall.com/about">About</a>
-          <a href="https://sandcassall.com/portfolio" class="active">Portfolio</a>
-        </div>
+  <nav class="nav">
+    <a class="nav-brand" href="/">
+      <img src="/images/logo.png" alt="Sand Cassall sandcastle logo">
+      <span><span class="brand-sand">sand</span><span class="brand-cassall">cassall</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/portfolio/" class="active">Portfolio</a>
     </div>
+  </nav>
 
-    <div class="portfolio-container">
-        <div class="portfolio-intro">
-            <h1>My Projects</h1>
-            <p>Here you'll find a selection of my recent work and ongoing projects. I enjoy exploring data, creating interactive experiences, and solving interesting problems.</p>
-        </div>
-
-        <div class="project-section">
-            <h2>Minesweeper Projects</h2>
-            <div class="project-content">
-                <div class="project-text">
-                    <p>MineMasters.pro is a collection of projects centered around the classic game of Minesweeper. From building a custom game engine to creating leaderboards and competitive tournaments, this project showcases my passion for both programming and the game itself.</p>
-                    <p>The MineMasters ecosystem consists of several interconnected components that enhance the Minesweeper community experience.</p>
-                    
-                    <div class="technologies">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">HTML5/CSS3</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Express</span>
-                    </div>
-                    
-                    <div class="project-links">
-                        <a href="https://minemasters.pro" target="_blank" class="project-button">Visit MineMasters</a>
-                    </div>
-                </div>
-                <div class="project-image">
-                    <img src="https://sandcassall.com/images/MineMasters.png" alt="MineMasters Minesweeper Game Screenshot" onerror="this.src='https://placehold.co/600x400/3d2963/fff?text=MineMasters+Screenshot'">
-                </div>
-            </div>
-            
-            <div class="sub-projects">
-                <div class="sub-project">
-                    <h3>Minesweeper Game</h3>
-                    <p>A fully-featured, custom-built Minesweeper game with multiple difficulty levels, customizable boards, and advanced game mechanics.</p>
-                    <div class="project-links">
-                        <a href="https://minemasters.pro/game" target="_blank" class="project-button">Play Game</a>
-                    </div>
-                </div>
-                
-                <div class="sub-project">
-                    <h3>Global Leaderboard</h3>
-                    <p>A competitive leaderboard system that tracks player performance across different difficulty levels, allowing users to compare their skills with others worldwide.</p>
-                    <div class="project-links">
-                        <a href="https://minemasters.pro/leaderboard" target="_blank" class="project-button">View Leaderboard</a>
-                    </div>
-                </div>
-                
-                <div class="sub-project">
-                    <h3>Chord Cup Tournament</h3>
-                    <p>An organized competitive tournament for Minesweeper enthusiasts, featuring brackets, live standings, and comprehensive results tracking.</p>
-                    <div class="project-links">
-                        <a href="https://minemasters.pro/chordcup" target="_blank" class="project-button">See Results</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-section">
-            <h2>BrawleSports.com</h2>
-            <div class="project-content">
-                <div class="project-text">
-                    <p>BrawleSports was a comprehensive esports statistics platform for the mobile game Brawl Stars. Created during the early competitive scene, the site provided in-depth analytics on teams, players, characters, maps, and game modes.</p>
-                    <p>As a key contributor, I performed data entry, site maintenance, wrote articles, and managed social media. The platform grew to amass over 100,000 pageviews from users worldwide, becoming a vital resource for the competitive Brawl Stars community.</p>
-                    <p>Though the site is no longer active, BrawleSports demonstrated my ability to collect, analyze, and present complex data in a user-friendly format while building an engaged community around competitive gaming statistics.</p>
-                    
-                    <div class="technologies">
-                        <span class="tech-tag">Data Analysis</span>
-                        <span class="tech-tag">Web Development</span>
-                        <span class="tech-tag">Content Creation</span>
-                        <span class="tech-tag">Community Management</span>
-                        <span class="tech-tag">Esports Analytics</span>
-                    </div>
-                </div>
-                <div class="project-image">
-                    <img src="https://sandcassall.com/images/IMG_3104.JPG" alt="BrawleSports Website Screenshot" onerror="this.src='https://placehold.co/600x400/3d2963/fff?text=BrawleSports+Screenshot'">
-                </div>
-            </div>
-        </div>
-
-        <div class="project-section">
-            <h2>Sports Betting Analytics Project</h2>
-            <div class="project-content">
-                <div class="project-text">
-                    <p>This exploratory project aimed to develop a winning betting strategy by leveraging publicly available prediction models and analyzing their confidence levels. I created algorithms to identify value bets and implemented various bankroll management strategies.</p>
-                    <p>Through rigorous analysis, I discovered several key insights about the sports betting industry:</p>
-                    <ul>
-                        <li>Even with an edge, the Time Value of Money dramatically impacts profitability</li>
-                        <li>Bankroll management strategies necessary for survivability create very small percentage returns that do not beat S&P 500 average returns</li>
-                        <li>When attempting to scale by using the strategy across multiple sports/leagues to find enough +EV bets, betting limits imposed by sportsbooks become a significant constraint</li>
-                        <li>The effort required to maintain and update the system is substantial while returns remain smaller than passive investing</li>
-                    </ul>
-                    <p>Though ultimately discontinued, this project demonstrates my analytical approach to complex systems, ability to evaluate investment opportunities, and willingness to reach data-driven conclusions even when they don't align with initial expectations.</p>
-                    
-                    <div class="technologies">
-                        <span class="tech-tag">Statistical Analysis</span>
-                        <span class="tech-tag">Probability Theory</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Data Modeling</span>
-                        <span class="tech-tag">Financial Analysis</span>
-                    </div>
-                </div>
-                <div class="project-image">
-                    <img src="https://sandcassall.com/images/sportsbetting.png" alt="Sports Betting Analytics Dashboard" onerror="this.src='https://placehold.co/600x400/3d2963/fff?text=Sports+Betting+Analytics'">
-                </div>
-            </div>
-        </div>
+  <header class="page-head">
+    <div class="container">
+      <div class="eyebrow">Case studies</div>
+      <h1>Built end to end, <span class="accent-text">by one person.</span></h1>
+      <p>
+        Frontend, backend, infrastructure, payments, release pipelines — I design and
+        operate the whole stack. Here's the work, and the decisions behind it.
+      </p>
     </div>
+  </header>
 
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <!-- ============================ MineMasters ============================ -->
+        <article class="card case reveal" id="minemasters">
+          <div class="case-top">
+            <h2>MineMasters.pro</h2>
+            <span class="pill pill-live">Live in production</span>
+          </div>
+          <div class="case-role">Role: everything &middot; frontend, APIs, database, payments, ops &middot; 2023 &ndash; present</div>
+
+          <div class="case-cols">
+            <div class="case-text">
+              <p>
+                MineMasters is <strong>the hub for competitive Minesweeper</strong> — a platform
+                serving the worldwide community with leaderboards, tournaments, training tools,
+                and original games. What started as a leaderboard grew into an ecosystem of
+                15+ interconnected apps that the community uses daily.
+              </p>
+              <p>
+                The public site is deliberately lean — hand-written JavaScript, no framework
+                overhead, fast on any device. Behind it sits a set of <strong>Node.js/Express
+                services with MySQL</strong> (kept in private repos) handling accounts,
+                leaderboard ingestion, and event registration.
+              </p>
+
+              <div class="deep-dive">
+                <h3>Spotlight: powering a real-world championship</h3>
+                <ul>
+                  <li><strong>NA Regional Championship (Chicagoland 2026)</strong> — the registration and payment system for an in-person tournament runs on my stack.</li>
+                  <li>Helcim payment integration with <strong>HMAC-verified webhooks</strong>, raw-body signature checks, and a server-to-server postback path for the hosted payment page.</li>
+                  <li><strong>Capacity gating and waitlists</strong> — seat limits enforced at the API layer, with graceful overflow to a waitlist flow.</li>
+                  <li>Designed a full <strong>accounts system</strong>: MySQL schema with cross-platform identity linking (verify you own your minesweeper.online account via one-time codes), preferences, and stat tracking.</li>
+                </ul>
+              </div>
+            </div>
+            <figure class="case-media">
+              <img src="/images/MineMasters.png" alt="MineMasters.pro screenshot" loading="lazy">
+              <figcaption>minemasters.pro — the competitive Minesweeper hub</figcaption>
+            </figure>
+          </div>
+
+          <div class="sub-grid">
+            <div class="sub-item">
+              <h4><a href="https://minemasters.pro/trainer" target="_blank" rel="noopener">MineTrainer</a></h4>
+              <p>A structured learn-to-sweep curriculum with an interactive lesson engine and a probability-solver bridge for guided practice.</p>
+            </div>
+            <div class="sub-item">
+              <h4><a href="https://minemasters.pro/unified-leaderboard" target="_blank" rel="noopener">Unified Leaderboard</a></h4>
+              <p>One ranking across communities — aggregates and normalizes records from multiple Minesweeper platforms.</p>
+            </div>
+            <div class="sub-item">
+              <h4><a href="https://minemasters.pro/chordcup" target="_blank" rel="noopener">Chord Cup</a></h4>
+              <p>Full tournament coverage: brackets, player profiles, country stats, and historical results.</p>
+            </div>
+            <div class="sub-item">
+              <h4><a href="https://minemasters.pro/pvp" target="_blank" rel="noopener">PvP Statistics</a></h4>
+              <p>Head-to-head match analytics for the competitive 1v1 scene.</p>
+            </div>
+            <div class="sub-item">
+              <h4><a href="https://minemasters.pro/womdle" target="_blank" rel="noopener">WoMdle</a></h4>
+              <p>A Wordle-style daily guessing game built around the World of Minesweeper player base.</p>
+            </div>
+            <div class="sub-item">
+              <h4><a href="https://minemasters.pro/boardigami" target="_blank" rel="noopener">Boardigami</a></h4>
+              <p>Original board-folding puzzle challenges with difficulty progression.</p>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Express</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">REST APIs</span>
+            <span class="tech-tag">Payments (Helcim)</span>
+            <span class="tech-tag">HMAC webhooks</span>
+            <span class="tech-tag">Schema design</span>
+            <span class="tech-tag">SEO / Open Graph</span>
+          </div>
+
+          <div class="case-links">
+            <a class="btn btn-primary btn-small" href="https://minemasters.pro" target="_blank" rel="noopener">Visit MineMasters.pro</a>
+            <a class="btn btn-secondary btn-small" href="https://minemasters.pro/na-championship" target="_blank" rel="noopener">NA Championship</a>
+          </div>
+        </article>
+
+        <!-- ============================ Extension Chord ============================ -->
+        <article class="card case reveal" id="extension-chord">
+          <div class="case-top">
+            <h2>Extension Chord</h2>
+            <span class="pill pill-live">Live &middot; auto-updating</span>
+          </div>
+          <div class="case-role">Role: sole developer &middot; Go, Electron internals, browser extensions, release security</div>
+
+          <div class="case-cols">
+            <div class="case-text">
+              <p>
+                Extension Chord is a <strong>mod loader for Minesweeper Online</strong> — a plugin
+                system that adds replay recording, personal-best alerts, leaderboard tooling, a
+                better level editor, and more, inside a game I don't control. It ships two ways
+                from one codebase: a native Windows installer for the Electron desktop app, and
+                a Chrome/Firefox extension for the web version.
+              </p>
+              <p>
+                This is the project where the <strong>systems design</strong> runs deepest:
+                binary patching, cryptographic signing, self-updating code, and failure
+                recovery — all invisible to the user, who just double-clicks an installer once.
+              </p>
+
+              <div class="deep-dive">
+                <h3>Engineering highlights</h3>
+                <ul>
+                  <li><strong>ASAR binary patching in Go</strong> — the installer parses Electron's app archive at the byte level (Chromium pickle header), splices new file entries into the manifest, and recalculates offsets and SHA256 integrity hashes before repacking in place.</li>
+                  <li><strong>Ed25519-signed releases</strong> — every update to the version manifest and preload is signed; clients verify signatures before executing anything downloaded.</li>
+                  <li><strong>Boot-loop protection</strong> — if a downloaded update fails to boot twice in a row, the bootstrap automatically rolls back to the bundled known-good copy.</li>
+                  <li><strong>Hot-swap tool loading</strong> — tools load from an updatable directory with fallback to the packaged copies, so updates apply without reinstalling.</li>
+                  <li><strong>Event-driven plugin architecture</strong> — tools are isolated modules communicating over a CustomEvent bus, with lifecycle events for page, board, and game state.</li>
+                  <li><strong>CSP surgery</strong> — strips frame-ancestors and X-Frame-Options headers via Electron's webRequest API to embed the game's paint editor as an overlay instead of a popup window.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="case-media">
+              <div class="pipeline" style="margin-top: 0;">
+                <div class="pipe-step" style="flex-basis: 100%;">
+                  <div class="pipe-n">RELEASE PIPELINE</div>
+                  <h4>From my keyboard to every install, safely</h4>
+                </div>
+                <div class="pipe-step">
+                  <div class="pipe-n">01 &middot; SIGN</div>
+                  <h4>Ed25519</h4>
+                  <p>Deterministic version.json + normalized preload bytes are signed with a private key that never leaves my machine.</p>
+                </div>
+                <div class="pipe-step">
+                  <div class="pipe-n">02 &middot; PUBLISH</div>
+                  <h4>version.json</h4>
+                  <p>Clients poll a single manifest with independent tool and preload version numbers.</p>
+                </div>
+                <div class="pipe-step">
+                  <div class="pipe-n">03 &middot; VERIFY</div>
+                  <h4>Public key check</h4>
+                  <p>Downloads are verified against the embedded public key before a single byte runs.</p>
+                </div>
+                <div class="pipe-step">
+                  <div class="pipe-n">04 &middot; SWAP</div>
+                  <h4>Hot reload</h4>
+                  <p>Tool updates apply on page reload; preload updates prompt a restart.</p>
+                </div>
+                <div class="pipe-step">
+                  <div class="pipe-n">05 &middot; RECOVER</div>
+                  <h4>Auto-rollback</h4>
+                  <p>Two failed boots and the bootstrap reverts to the bundled known-good version. No bricked installs.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ship-grid">
+            <div class="ship-card">
+              <h4>&#x1F5A5;&#xFE0F; Ships as: Windows installer</h4>
+              <p>A single Go executable with every asset embedded. Auto-detects the game, backs up originals, patches the archive, done. No zip files, no command line.</p>
+            </div>
+            <div class="ship-card">
+              <h4>&#x1F9E9; Ships as: browser extension</h4>
+              <p>The same tool code, injected by a content script at document_start for Chrome, Edge, and Firefox — one source of truth, synced by a build script.</p>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tech-tag">Go</span>
+            <span class="tech-tag">Electron internals</span>
+            <span class="tech-tag">Browser extensions</span>
+            <span class="tech-tag">Ed25519 signing</span>
+            <span class="tech-tag">Binary formats (ASAR)</span>
+            <span class="tech-tag">Auto-update systems</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Node.js tooling</span>
+          </div>
+
+          <div class="case-links">
+            <a class="btn btn-primary btn-small" href="https://github.com/JLSall/Extension-Chord" target="_blank" rel="noopener">View source on GitHub</a>
+            <a class="btn btn-secondary btn-small" href="https://minemasters.pro/extension-chord" target="_blank" rel="noopener">Get the installer</a>
+          </div>
+        </article>
+
+        <!-- ============================ Systems ============================ -->
+        <section id="systems" style="scroll-margin-top: 90px;">
+          <div class="eyebrow reveal">The systems underneath</div>
+          <h2 class="section-title reveal">What I actually enjoy building</h2>
+          <p class="section-lede reveal">
+            The flashy pages are the tip. Most of my time goes into the unglamorous parts
+            that make software trustworthy — and those are the parts I'd rather talk about
+            in an interview.
+          </p>
+          <div class="sys-grid">
+            <div class="card sys-card reveal">
+              <div class="sys-icon">&#x1F5C4;&#xFE0F;</div>
+              <h3>Relational schema design</h3>
+              <p>Normalized MySQL schemas with deliberate indexes, FK cascades, and verification-code flows — designed on paper before a single migration runs.</p>
+            </div>
+            <div class="card sys-card reveal">
+              <div class="sys-icon">&#x1F510;</div>
+              <h3>Release security</h3>
+              <p>Ed25519 signature pipelines, deterministic serialization for signable artifacts, embedded public keys, and rollback-safe clients.</p>
+            </div>
+            <div class="card sys-card reveal">
+              <div class="sys-icon">&#x1F4B3;</div>
+              <h3>Payment integration</h3>
+              <p>Hosted payment pages, HMAC-verified webhooks on raw request bodies, idempotent postback handling, and reconciliation between provider and database.</p>
+            </div>
+            <div class="card sys-card reveal">
+              <div class="sys-icon">&#x1F517;</div>
+              <h3>API &amp; identity design</h3>
+              <p>REST endpoints with capacity gating, waitlist overflow, and cross-platform account linking verified by expiring one-time codes.</p>
+            </div>
+            <div class="card sys-card reveal">
+              <div class="sys-icon">&#x1F4E6;</div>
+              <h3>Distribution &amp; updates</h3>
+              <p>Single-file installers with embedded assets, hot-swap loading, staged update prompts, and boot-loop detection that self-heals.</p>
+            </div>
+            <div class="card sys-card reveal">
+              <div class="sys-icon">&#x1F9ED;</div>
+              <h3>Operating in production</h3>
+              <p>Everything above is live and serving a real community — I own the deploys, the monitoring, the incidents, and the 2 a.m. fixes.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================ Earlier work ============================ -->
+        <section id="earlier" style="margin-top: 4rem;">
+          <div class="eyebrow reveal">Earlier work</div>
+          <h2 class="section-title reveal">Where the habits came from</h2>
+          <div class="early-grid" style="margin-top: 2rem;">
+            <div class="card early-card reveal">
+              <h3>BrawleSports.com</h3>
+              <p>
+                An esports statistics platform for competitive Brawl Stars, covering teams,
+                players, characters, maps, and modes during the game's early competitive scene.
+              </p>
+              <ul>
+                <li>Grew to 100,000+ pageviews from a worldwide audience</li>
+                <li>Data collection, entry pipelines, and site maintenance</li>
+                <li>Articles, social media, and community management</li>
+              </ul>
+              <div class="tech-tags" style="margin-top: 0.5rem;">
+                <span class="tech-tag">Data analysis</span>
+                <span class="tech-tag">Web development</span>
+                <span class="tech-tag">Community</span>
+              </div>
+            </div>
+            <div class="card early-card reveal">
+              <h3>Sports Betting Analytics</h3>
+              <p>
+                A research project: could public prediction models plus disciplined bankroll
+                management beat the market? I built the models, ran the numbers, and
+                concluded — with data — that they couldn't beat passive index investing.
+              </p>
+              <ul>
+                <li>Value-bet identification from model confidence levels</li>
+                <li>Bankroll simulation across multiple strategies</li>
+                <li>Honest negative result: TVM, book limits, and effort killed the edge</li>
+              </ul>
+              <div class="tech-tags" style="margin-top: 0.5rem;">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Statistics</span>
+                <span class="tech-tag">Financial modeling</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-tagline">&copy; Jesse Sall &middot; built by hand, like a good sandcastle</div>
+      <div class="footer-links">
+        <a href="https://github.com/JLSall" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://minemasters.pro" target="_blank" rel="noopener">MineMasters</a>
+        <a href="mailto:jesse.lee.sall@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/sand-stars.js"></script>
 </body>
 </html>
