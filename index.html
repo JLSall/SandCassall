@@ -1,153 +1,322 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sand Cassall</title>
-    <link rel="shortcut icon" type="image/png" href="images/logo.png">
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sand Cassall — Jesse Sall, Full-Stack Developer</title>
+  <meta name="description" content="Jesse Sall builds playful software with serious engineering underneath — game platforms, signed auto-update pipelines, payment-backed event systems, and more.">
+  <link rel="canonical" href="https://sandcassall.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sandcassall.com/">
+  <meta property="og:title" content="Sand Cassall — Jesse Sall">
+  <meta property="og:description" content="Sandcastles that ship: full-stack development and systems design by Jesse Sall.">
+  <meta property="og:image" content="https://sandcassall.com/images/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/assets/img/favicons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    /* ---- Hero ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6.5rem 1rem 4rem;
+      position: relative;
+    }
+    .hero-logo {
+      width: clamp(130px, 18vw, 190px);
+      height: auto;
+      margin-bottom: 1.75rem;
+      filter: drop-shadow(0 12px 40px rgba(232, 179, 106, 0.25));
+      animation: float 7s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .hero-word {
+      font-family: var(--font-mono);
+      font-size: clamp(0.85rem, 1.6vw, 1rem);
+      letter-spacing: 0.28em;
+      color: var(--text-faint);
+      margin-bottom: 1.1rem;
+    }
+    .hero-word .w-sand { color: var(--sand); }
+    .hero-word .w-cass { color: var(--pink); }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      max-width: 14em;
+      margin-bottom: 1.3rem;
+    }
+    .hero-sub {
+      color: var(--text-soft);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      max-width: 620px;
+      margin-bottom: 2.4rem;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
+    .hero-scroll {
+      position: absolute;
+      bottom: clamp(80px, 14vh, 150px);
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--text-faint);
+      font-size: 1.4rem;
+      text-decoration: none;
+      animation: nudge 2.2s ease-in-out infinite;
+    }
+    @keyframes nudge {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 7px); }
+    }
 
-.navbar {
-  background-color: rgba(8, 16, 32, 0);
-  color: white;
-  position: fixed;
-  top: 15%;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-  height: 40px; /* Adjust the height as needed */
-  transition: height 0.3s, box-shadow 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Added to center the menu options horizontally */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0);
-}
+    /* ---- Stats strip ---- */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .stat {
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--sand);
+      line-height: 1.1;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-soft);
+      margin-top: 0.4rem;
+    }
 
-.navbar a {
-  display: block;
-  font-size: 1.25vw; /* Set the font size as a percentage of the viewport width */
-  font-family: monospace;
-  color: pink;
-  text-align: center;
-  padding: .9vw 4vw;
-  text-decoration: none;
-  transition: font-size 0.4s, background-color 0.3s, color 0.3s;
-}
-
-.navbar a:hover {
-  background-color: rgba(8, 16, 32, .65);
-  color: #fff;
-}
-
-.navbar:hover {
-  background-color: rgba(8, 16, 32, 0);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0);
-}
-
-.navbar:hover a {
-  font-size: 1.75vw; /* Set the increased font size for hover state */
-}
-
-.page-content {
-  padding: 40px;
-  color: white;
-  text-align: center;
-  margin-top: 80px; /* Adjust the margin-top value to provide space below the navbar */
-}
-    
-        body {
-      background: linear-gradient(220deg, rgba(36, 22, 69), rgba(14, 26, 48));
+    /* ---- Feature cards ---- */
+    .feature {
+      display: flex;
+      flex-direction: column;
+      padding: 1.9rem 1.7rem;
+    }
+    .feature-head { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem; }
+    .feature-mark {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(236, 234, 244, 0.06);
+      border: 1px solid var(--line);
+      flex-shrink: 0;
       overflow: hidden;
     }
-        
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background-color: white;
-            animation-name: moveStar;
-            animation-duration: var(--duration);
-            animation-timing-function: linear;
-            animation-fill-mode: forwards;
-            animation-iteration-count: infinite;
-        }
-        
+    .feature-mark img { width: 32px; height: 32px; }
+    .feature-mark span { font-size: 1.4rem; }
+    .feature h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .feature-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .feature p { color: var(--text-soft); font-size: 0.95rem; flex-grow: 1; }
+    .feature-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.3rem; }
 
-        @keyframes moveStar {
-            0% {
-                transform: translate(0, 0);
-                opacity: 0.8
-            }
-            100% {
-                transform: translate(750px, 600px);
-                opacity: 0
-            }
-        }
-        
-        @media only screen and (orientation: portrait) {
-  .navbar a {
-  display: block;
-  font-size: 1.8vh; /* Set the font size as a percentage of the viewport width */
-  font-family: monospace;
-  color: pink;
-  text-align: center;
-  padding: .9vw 4vw;
-  text-decoration: none;
-  transition: font-size 0.4s, background-color 0.3s, color 0.3s;
-}
-
-.navbar:hover a {
-  font-size: 2.1vh; /* Set the increased font size for hover state */
-}
-
-}
-        
-        #logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 80%;
-      max-height: 50%;
-      height: auto;
-      width: auto\9; /* ie8 */
-    </style>
+    /* ---- Name story ---- */
+    .name-story {
+      padding: 2.2rem clamp(1.4rem, 4vw, 3rem);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem 3rem;
+    }
+    .name-story:hover { transform: none; }
+    .name-story-def { flex: 1 1 300px; }
+    .name-story-def .term {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .name-story-def .phon {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-faint);
+      margin-bottom: 0.9rem;
+    }
+    .name-story-def p { color: var(--text-soft); font-size: 0.98rem; }
+    .name-story-def em { color: var(--sand); font-style: normal; }
+    .name-story-def .who { color: var(--pink); }
+  </style>
 </head>
 <body>
-    <script>
-        function getRandomDuration() {
-            return Math.random() * 7000 + 2000; // Random duration between 1000ms and 5000ms
-        }
+  <canvas id="sand-sky" aria-hidden="true"></canvas>
+  <div class="dunes" aria-hidden="true">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,96 C240,140 420,60 720,88 C1020,116 1200,70 1440,104 L1440,160 L0,160 Z" fill="#141033" opacity="0.9"/>
+      <path d="M0,124 C300,90 560,146 860,118 C1120,94 1300,138 1440,120 L1440,160 L0,160 Z" fill="#0b0d20"/>
+    </svg>
+  </div>
 
-        function getRandomPosition() {
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
-            const xPos = Math.floor(Math.random() * (screenWidth - 2)) + 1 -400; // Random X position between 1 and (screenWidth - 2)
-            const yPos = Math.floor(Math.random() * (screenHeight - 2)) + 1 -300; // Random Y position between 1 and (screenHeight - 2)
-            return { x: xPos, y: yPos };
-        }
+  <nav class="nav">
+    <a class="nav-brand" href="/">
+      <img src="/images/logo.png" alt="Sand Cassall sandcastle logo">
+      <span><span class="brand-sand">sand</span><span class="brand-cassall">cassall</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="active">Home</a>
+      <a href="/about/">About</a>
+      <a href="/portfolio/" class="nav-cta">Portfolio</a>
+    </div>
+  </nav>
 
-        function createStar() {
-            const star = document.createElement("div");
-            star.className = "star";
-            star.style.setProperty("--duration", `${getRandomDuration()}ms`);
+  <header class="hero">
+    <img class="hero-logo" src="/images/logo.png" alt="A sandcastle under the stars">
+    <div class="hero-word"><span class="w-sand">sand</span>&middot;<span class="w-cass">cass</span>&middot;<span class="w-cass">all</span></div>
+    <h1>Sandcastles, <span class="accent-text">built to ship.</span></h1>
+    <p class="hero-sub">
+      I'm <strong>Jesse Sall</strong> — a full-stack developer and systems designer.
+      I build playful software with serious engineering underneath: competitive game
+      platforms, signed auto-update pipelines, and payment-backed live events.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="/portfolio/">View the work</a>
+      <a class="btn btn-secondary" href="https://github.com/JLSall" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <a class="hero-scroll" href="#work" aria-label="Scroll to featured work">&#x25BE;</a>
+  </header>
 
-            const position = getRandomPosition();
-            star.style.left = position.x + "px";
-            star.style.top = position.y + "px";
+  <main>
+    <section class="section" id="work">
+      <div class="container">
+        <div class="eyebrow reveal">Featured work</div>
+        <h2 class="section-title reveal">Two flagship projects,<br>one shared obsession.</h2>
+        <p class="section-lede reveal">
+          A competitive gaming platform and the native tooling that plugs into it —
+          designed, built, shipped, and operated end to end by one person.
+        </p>
 
-            document.body.appendChild(star);
-        }
+        <div class="card-grid">
+          <div class="card feature reveal">
+            <div class="feature-head">
+              <div class="feature-mark"><img src="/images/minemasters-logo.png" alt="MineMasters logo"></div>
+              <div>
+                <div class="feature-kicker">Live platform</div>
+                <h3>MineMasters.pro</h3>
+              </div>
+            </div>
+            <p>
+              The competitive Minesweeper hub: unified leaderboards, tournaments,
+              a lesson-driven trainer with a probability solver, PvP stats, and 15+
+              interactive apps — backed by Node.js APIs, MySQL, and real payment
+              processing for an in-person championship.
+            </p>
+            <div class="feature-links">
+              <a class="btn btn-secondary btn-small" href="/portfolio/#minemasters">Case study</a>
+              <a class="btn btn-secondary btn-small" href="https://minemasters.pro" target="_blank" rel="noopener">Visit site</a>
+            </div>
+          </div>
 
-        for (let i = 0; i < 200; i++) {
-            createStar();
-        }
-    </script>
-    <img id="logo" src="https://sandcassall.com/images/logo.png" alt="Logo">
-    
-    <div class="navbar">
-  <a href="https://sandcassall.com/" class="active">Home</a>
-  <a href="https://sandcassall.com/about">About</a>
-  <a href="https://sandcassall.com/portfolio">Portfolio</a>
-</div>
-    
+          <div class="card feature reveal">
+            <div class="feature-head">
+              <div class="feature-mark"><span aria-hidden="true">&#x1F50C;</span></div>
+              <div>
+                <div class="feature-kicker">Systems project</div>
+                <h3>Extension Chord</h3>
+              </div>
+            </div>
+            <p>
+              A mod loader for Minesweeper Online, shipped two ways: a Go installer
+              that binary-patches Electron's app archive, and a Chrome/Firefox
+              extension — with an Ed25519-signed auto-update pipeline and automatic
+              rollback on failed boots.
+            </p>
+            <div class="feature-links">
+              <a class="btn btn-secondary btn-small" href="/portfolio/#extension-chord">Case study</a>
+              <a class="btn btn-secondary btn-small" href="https://github.com/JLSall/Extension-Chord" target="_blank" rel="noopener">Source</a>
+            </div>
+          </div>
+
+          <div class="card feature reveal">
+            <div class="feature-head">
+              <div class="feature-mark"><span aria-hidden="true">&#x2699;&#xFE0F;</span></div>
+              <div>
+                <div class="feature-kicker">Behind the curtain</div>
+                <h3>The systems underneath</h3>
+              </div>
+            </div>
+            <p>
+              The parts you don't see: REST APIs, relational schemas, account systems
+              with cross-platform identity linking, HMAC-verified payment webhooks,
+              capacity gating with waitlists, and release signing. The backends live
+              in private repos — the design decisions are in the case studies.
+            </p>
+            <div class="feature-links">
+              <a class="btn btn-secondary btn-small" href="/portfolio/#systems">How it's built</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="stats">
+          <div class="card stat reveal"><div class="stat-num">15+</div><div class="stat-label">web apps shipped &amp; live</div></div>
+          <div class="card stat reveal"><div class="stat-num">2</div><div class="stat-label">platforms modded (Electron + browser)</div></div>
+          <div class="card stat reveal"><div class="stat-num">1</div><div class="stat-label">real-world championship powered</div></div>
+          <div class="card stat reveal"><div class="stat-num">&#x221E;</div><div class="stat-label">grains of sand in the sky above</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card name-story reveal">
+          <div class="name-story-def">
+            <div class="term"><span style="color: var(--sand);">sand</span><span style="color: var(--pink);">cassall</span> <span style="color: var(--text-faint);">(n.)</span></div>
+            <div class="phon">/&#712;s&aelig;nd &#716;k&aelig;s&#8226;&#601;l/</div>
+            <p>
+              <em>Sandcastles</em> — building things for the joy of building them —
+              plus <span class="who">Sall</span>, the person doing the building.
+              Look closely at the sky on this page: those are stars, but they fall
+              like sand. That's the whole idea.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-tagline">&copy; Jesse Sall &middot; built by hand, like a good sandcastle</div>
+      <div class="footer-links">
+        <a href="https://github.com/JLSall" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://minemasters.pro" target="_blank" rel="noopener">MineMasters</a>
+        <a href="mailto:jesse.lee.sall@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/sand-stars.js"></script>
 </body>
 </html>

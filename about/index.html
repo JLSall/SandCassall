@@ -1,324 +1,215 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>About Jesse - Sand Cassall</title>
-    <link rel="shortcut icon" type="image/png" href="https://sandcassall.com/images/logo.png">
-    <style>
-        
-.navbar {
-  background-color: rgba(8, 16, 32, 0);
-  color: white;
-  position: static;
-  width: 100%;
-  z-index: 999;
-  height: 40px; /* Adjust the height as needed */
-  transition: height 0.3s, box-shadow 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Added to center the menu options horizontally */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0);
-  margin-bottom: 40px;
-}
-
-.navbar a {
-  display: block;
-  font-size: 1.25vw; /* Set the font size as a percentage of the viewport width */
-  font-family: monospace;
-  color: pink;
-  text-align: center;
-  padding: .9vw 4vw;
-  text-decoration: none;
-  transition: font-size 0.4s, background-color 0.3s, color 0.3s;
-}
-
-.navbar a:hover {
-  background-color: rgba(8, 16, 32, .65);
-  color: #fff;
-}
-
-.navbar:hover {
-  background-color: rgba(8, 16, 32, 0);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0);
-}
-
-.navbar:hover a {
-  font-size: 1.75vw; /* Set the increased font size for hover state */
-}
-
-body {
-  background: linear-gradient(220deg, rgba(36, 22, 69), rgba(14, 26, 48));
-  overflow-x: hidden;
-  color: #fff;
-  font-family: monospace;
-  margin: 0;
-  padding: 0;
-}
-        
-.star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background-color: white;
-    animation-name: moveStar;
-    animation-duration: var(--duration);
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-}
-
-@keyframes moveStar {
-    0% {
-        transform: translate(0, 0);
-        opacity: 0.8
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>About Jesse — Sand Cassall</title>
+  <meta name="description" content="About Jesse Sall — full-stack developer, systems designer, Minesweeper enthusiast, and pinball player.">
+  <link rel="canonical" href="https://sandcassall.com/about/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sandcassall.com/about/">
+  <meta property="og:title" content="About Jesse — Sand Cassall">
+  <meta property="og:description" content="Full-stack developer and systems designer. Builder of sandcastles that ship.">
+  <meta property="og:image" content="https://sandcassall.com/images/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/assets/img/favicons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    .about-wrap {
+      width: min(880px, 92%);
+      margin: 0 auto;
+      padding-top: 8.5rem;
     }
-    100% {
-        transform: translate(750px, 600px);
-        opacity: 0
+
+    .profile {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2.2rem;
+      padding: clamp(1.6rem, 4vw, 2.6rem);
+      margin-bottom: 2rem;
     }
-}
+    .profile:hover { transform: none; }
+    .profile-pic {
+      width: clamp(160px, 24vw, 220px);
+      height: clamp(160px, 24vw, 220px);
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid rgba(232, 179, 106, 0.55);
+      box-shadow: 0 12px 40px rgba(4, 6, 14, 0.5);
+      transition: transform 0.35s var(--ease-spring), border-color 0.35s var(--ease);
+    }
+    .profile-pic:hover { transform: scale(1.04) rotate(-1.5deg); border-color: var(--pink); }
+    .profile-info { flex: 1 1 300px; }
+    .profile-info h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.7rem;
+    }
+    .profile-info .role-line {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--sand);
+      margin-bottom: 1rem;
+      letter-spacing: 0.06em;
+    }
+    .profile-info p { color: var(--text-soft); font-size: 1.02rem; }
 
-#logo-small {
-  display: block;
-  width: 60px;
-  height: auto;
-  margin: 20px auto;
-}
+    .about-block {
+      padding: clamp(1.5rem, 3.5vw, 2.2rem);
+      margin-bottom: 1.6rem;
+    }
+    .about-block:hover { transform: none; }
+    .about-block h2 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+      color: var(--text);
+    }
+    .about-block h2 .h-accent { color: var(--sand); }
+    .about-block p { color: var(--text-soft); font-size: 0.98rem; margin-bottom: 0.9rem; }
+    .about-block p:last-child { margin-bottom: 0; }
+    .about-block p strong { color: var(--text); }
 
-.page-header {
-  padding-top: 20px;
-  text-align: center;
-}
+    .interests {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.3rem;
+    }
+    .interest {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 1.1rem 0.8rem;
+      background: rgba(236, 234, 244, 0.045);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      transition: transform 0.3s var(--ease-spring), border-color 0.3s var(--ease), background 0.3s var(--ease);
+    }
+    .interest:hover {
+      transform: translateY(-4px);
+      border-color: rgba(242, 160, 189, 0.45);
+      background: rgba(242, 160, 189, 0.07);
+      color: var(--text);
+    }
+    .interest .icon { font-size: 1.7rem; }
 
-@media only screen and (orientation: portrait) {
-  .navbar a {
-  display: block;
-  font-size: 1.8vh; /* Set the font size as a percentage of the viewport width */
-  font-family: monospace;
-  color: pink;
-  text-align: center;
-  padding: .9vw 4vw;
-  text-decoration: none;
-  transition: font-size 0.4s, background-color 0.3s, color 0.3s;
-  }
-
-.navbar:hover a {
-  font-size: 2.1vh; /* Set the increased font size for hover state */
-  }
-}
-
-.about-container {
-  width: 80%;
-  max-width: 900px;
-  margin: 0 auto 50px;
-  padding: 20px;
-  background: rgba(8, 16, 32, 0.7);
-  border-radius: 15px;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.profile-section {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-}
-
-.profile-pic {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid rgba(255, 192, 203, 0.6);
-  margin-right: 30px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.profile-pic:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-}
-
-.profile-info {
-  flex: 1;
-  min-width: 300px;
-}
-
-.profile-info h1 {
-  color: pink;
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-}
-
-.about-section {
-  margin-bottom: 30px;
-}
-
-.about-section h2 {
-  color: pink;
-  border-bottom: 2px solid rgba(255, 192, 203, 0.4);
-  padding-bottom: 8px;
-  margin-top: 25px;
-}
-
-.about-section p {
-  line-height: 1.6;
-  font-size: 1.1rem;
-}
-
-.interest-icons {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  gap: 20px;
-  justify-content: center;
-}
-
-.interest-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 15px;
-  border-radius: 10px;
-  width: 120px;
-  transition: transform 0.3s, background 0.3s;
-}
-
-.interest-item:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 192, 203, 0.2);
-}
-
-.interest-icon {
-  font-size: 2rem;
-  margin-bottom: 8px;
-}
-
-/* Fun animation for headings */
-h2 {
-  position: relative;
-  overflow: hidden;
-}
-
-h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: pink;
-  transition: width 0.5s ease;
-}
-
-h2:hover::after {
-  width: 100%;
-}
-
-@media screen and (max-width: 768px) {
-  .profile-section {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .profile-pic {
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
-  
-  .interest-icons {
-    justify-content: center;
-  }
-}
-    </style>
+    .contact-row { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.2rem; }
+  </style>
 </head>
 <body>
-    <script>
-        function getRandomDuration() {
-            return Math.random() * 7000 + 2000; // Random duration between 2000ms and 9000ms
-        }
+  <canvas id="sand-sky" aria-hidden="true"></canvas>
+  <div class="dunes" aria-hidden="true">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,96 C240,140 420,60 720,88 C1020,116 1200,70 1440,104 L1440,160 L0,160 Z" fill="#141033" opacity="0.9"/>
+      <path d="M0,124 C300,90 560,146 860,118 C1120,94 1300,138 1440,120 L1440,160 L0,160 Z" fill="#0b0d20"/>
+    </svg>
+  </div>
 
-        function getRandomPosition() {
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
-            const xPos = Math.floor(Math.random() * (screenWidth - 2)) + 1 -400; // Random X position
-            const yPos = Math.floor(Math.random() * (screenHeight - 2)) + 1 -300; // Random Y position
-            return { x: xPos, y: yPos };
-        }
+  <nav class="nav">
+    <a class="nav-brand" href="/">
+      <img src="/images/logo.png" alt="Sand Cassall sandcastle logo">
+      <span><span class="brand-sand">sand</span><span class="brand-cassall">cassall</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about/" class="active">About</a>
+      <a href="/portfolio/" class="nav-cta">Portfolio</a>
+    </div>
+  </nav>
 
-        function createStar() {
-            const star = document.createElement("div");
-            star.className = "star";
-            star.style.setProperty("--duration", `${getRandomDuration()}ms`);
-
-            const position = getRandomPosition();
-            star.style.left = position.x + "px";
-            star.style.top = position.y + "px";
-
-            document.body.appendChild(star);
-        }
-
-        for (let i = 0; i < 200; i++) {
-            createStar();
-        }
-    </script>
-    
-    <div class="page-header">
-        <img id="logo-small" src="https://sandcassall.com/images/logo.png" alt="Logo">
-        
-        <div class="navbar">
-          <a href="https://sandcassall.com">Home</a>
-          <a href="https://sandcassall.com/about" class="active">About</a>
-          <a href="https://sandcassall.com/portfolio">Portfolio</a>
-        </div>
+  <main class="about-wrap">
+    <div class="card profile reveal">
+      <img class="profile-pic" src="/images/DSCN0063.jpeg" alt="Jesse playing pinball">
+      <div class="profile-info">
+        <h1>Jesse Sall</h1>
+        <div class="role-line">full-stack developer &middot; systems designer &middot; sandcastle architect</div>
+        <p>
+          Hello there! I build software the way some people build sandcastles: for the joy
+          of it, but with surprisingly strong foundations. Patterns are my thing — in data,
+          in system design, and on pinball playfields.
+        </p>
+      </div>
     </div>
 
-    <div class="about-container">
-        <div class="profile-section">
-            <img src="https://sandcassall.com/images/DSCN0063.jpeg" alt="Jesse playing pinball" class="profile-pic">
-            <div class="profile-info">
-                <h1>Jesse Sall</h1>
-                <p>Hello there! I'm a data enthusiast with a fondness for patterns, whether in spreadsheets or on pinball playfields.</p>
-            </div>
-        </div>
-
-        <div class="about-section">
-            <h2>Interests & Hobbies</h2>
-            <p>When not working on projects, you might find me playing Minesweeper, enjoying pinball at local arcades, or participating in trivia nights. I'm also that person who gets oddly excited about elegant data solutions and well-organized spreadsheets.</p>
-            
-            <div class="interest-icons">
-                <div class="interest-item">
-                    <div class="interest-icon">💣</div>
-                    <span>Minesweeper</span>
-                </div>
-                <div class="interest-item">
-                    <div class="interest-icon">🎮</div>
-                    <span>Pinball</span>
-                </div>
-                <div class="interest-item">
-                    <div class="interest-icon">🤔</div>
-                    <span>Trivia</span>
-                </div>
-                <div class="interest-item">
-                    <div class="interest-icon">📊</div>
-                    <span>Data Science</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="about-section">
-            <h2>Education & Background</h2>
-            <p>I hold a Bachelor's degree in Accounting and Information Systems, though I've gravitated toward the latter where I spend most of my time as a solo developer. My work in Business Intelligence has taught me to appreciate the stories that can emerge from seemingly ordinary data.</p>
-        </div>
-
-        <div class="about-section">
-            <h2>Goals & Philosophy</h2>
-            <p>I believe in continuous learning and always have at least three projects in various states of "almost finished" at any given time. My goals are simple: create things I enjoy, learn new tools and skills, and grow by occasionally venturing beyond my comfort zone into new challenges.​​​​​​​​​​​​​​​​</p>
-        </div>
+    <div class="card about-block reveal">
+      <h2><span class="h-accent">&#x1F3D7;&#xFE0F;</span> What I do</h2>
+      <p>
+        I'm a solo developer who ships whole systems: the pages you see, the APIs behind
+        them, the database schemas behind those, and the deploy pipelines behind everything.
+        My biggest ongoing project is <strong>MineMasters.pro</strong>, the competitive
+        Minesweeper hub, along with <strong>Extension Chord</strong>, a signed, auto-updating
+        mod loader for Minesweeper Online. Both are live, in production, and used by a real
+        community every day.
+      </p>
+      <p>
+        By background I'm a Business Intelligence developer — I hold a Bachelor's degree in
+        Accounting and Information Systems, and gravitated hard toward the systems side.
+        The accounting brain still shows up in my code: I like things that reconcile,
+        verify, and balance out.
+      </p>
     </div>
 
+    <div class="card about-block reveal">
+      <h2><span class="h-accent">&#x2728;</span> Interests &amp; hobbies</h2>
+      <p>
+        When not shipping, you'll find me chasing Minesweeper personal bests, playing
+        pinball at local arcades, or winning (occasionally) at trivia nights. I'm also the
+        person who gets genuinely excited about an elegant schema or a well-organized
+        spreadsheet, and I've made peace with that.
+      </p>
+      <div class="interests">
+        <div class="interest"><span class="icon">&#x1F4A3;</span>Minesweeper</div>
+        <div class="interest"><span class="icon">&#x1F3AE;</span>Pinball</div>
+        <div class="interest"><span class="icon">&#x1F914;</span>Trivia</div>
+        <div class="interest"><span class="icon">&#x1F4CA;</span>Data</div>
+        <div class="interest"><span class="icon">&#x1F3F0;</span>Sandcastles</div>
+      </div>
+    </div>
+
+    <div class="card about-block reveal">
+      <h2><span class="h-accent">&#x1F9ED;</span> Goals &amp; philosophy</h2>
+      <p>
+        Build things I enjoy. Learn tools I don't know yet. Keep at least three projects in
+        various states of "almost finished" at all times — and actually finish the ones
+        that matter. Sandcastles get washed away; the fun is in building the next one
+        better.
+      </p>
+      <p>
+        If you'd like to talk about work, Minesweeper, or the correct way to nudge a
+        pinball machine, reach out:
+      </p>
+      <div class="contact-row">
+        <a class="btn btn-primary btn-small" href="mailto:jesse.lee.sall@gmail.com">Email me</a>
+        <a class="btn btn-secondary btn-small" href="https://github.com/JLSall" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-secondary btn-small" href="/portfolio/">See the work</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-tagline">&copy; Jesse Sall &middot; built by hand, like a good sandcastle</div>
+      <div class="footer-links">
+        <a href="https://github.com/JLSall" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://minemasters.pro" target="_blank" rel="noopener">MineMasters</a>
+        <a href="mailto:jesse.lee.sall@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/sand-stars.js"></script>
 </body>
 </html>
